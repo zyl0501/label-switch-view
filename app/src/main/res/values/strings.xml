@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">LabelSwitch</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <string-array name="labels">
+        <item>label1</item>
+        <item>label2</item>
+        <item>label3</item>
+        <item>label4</item>
+    </string-array>
+</resources>
