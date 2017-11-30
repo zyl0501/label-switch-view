@@ -4,3 +4,10 @@
 /.idea/libraries
 .DS_Store
 /build
+
+*.iml
+/captures
+/.idea
+**/build
+*.apk
+/app/version.properties
