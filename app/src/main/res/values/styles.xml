@@ -5,13 +5,4 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <declare-styleable name="LabelSwitchView">
-        <attr name="labels" format="reference" />
-        <attr name="normalColor" format="color" />
-        <attr name="selectedColor" format="color" />
-        <attr name="selectedBackground" format="reference" />
-        <attr name="labelTextSize" format="dimension" />
-        <attr name="dragOutDist" format="dimension" />
-    </declare-styleable>
-
 </resources>

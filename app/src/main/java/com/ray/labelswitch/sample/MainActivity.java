@@ -1,16 +1,14 @@
 package com.ray.labelswitch.sample;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import com.ray.labelswitch.R;
-import com.ray.labelswitch.library.LabelSwitchView;
+import com.ray.widget.lab.LabelSwitchView;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends AppCompatActivity {
 
     Toast toast;
 
@@ -18,7 +16,7 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        LabelSwitchView labelSwitchView = (LabelSwitchView) findViewById(R.id.label_view);
+        LabelSwitchView labelSwitchView = findViewById(R.id.label_view);
         labelSwitchView.setOnIndexChangeListener(new LabelSwitchView.OnIndexChangeListener() {
             @Override
             public void onIndexChange(int oldIndex, int newIndex) {
@@ -32,26 +30,4 @@ public class MainActivity extends ActionBarActivity {
         });
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }

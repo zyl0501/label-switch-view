@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="LabelSwitchView">
+        <attr name="labels" format="reference" />
+        <attr name="normalColor" format="color" />
+        <attr name="selectedColor" format="color" />
+        <attr name="selectedBackground" format="reference" />
+        <attr name="labelTextSize" format="dimension" />
+        <attr name="dragOutDist" format="dimension" />
+        <attr name="showSwipeRelative" format="boolean"/>
+    </declare-styleable>
+</resources>

@@ -1,4 +1,4 @@
-package com.ray.labelswitch.library;
+package com.ray.widget.lab;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -16,8 +16,6 @@ import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.Scroller;
 
-import com.ray.labelswitch.R;
-
 public class LabelSwitchView extends View {
 
     public interface OnIndexChangeListener {
@@ -25,8 +23,6 @@ public class LabelSwitchView extends View {
     }
 
     private static final String TAG = "LabelSwitchView";
-    private static final boolean TEST = true;
-
 
     private static final int INVALID_ID = -1;
     //adjust 时间
@@ -35,6 +31,7 @@ public class LabelSwitchView extends View {
     private static final int DEFAULT_SELECTED_COLOR = 0xFF0000FF;
     private static final int DEFAULT_TEXT_SIZE = 16;//sp
     private static final int DEFAULT_DRAG_OUT_DIST = 10;//dp
+    private static final boolean DEFAULT_SHOW_RELATIVE = false;
 
     private int mElementWidth;
     private int textPaddingTop;
@@ -50,6 +47,7 @@ public class LabelSwitchView extends View {
     private int mCurrentOffsetX;
     private int mPreviousScrollerX;
     private boolean hasLabelChanged = false;
+    private boolean showSwipeRelative;
 
     //大力拖动的时候，最大能拖出边界的距离
     private int dragOutDist;
@@ -88,6 +86,7 @@ public class LabelSwitchView extends View {
         labelTextSize = typedArray.getDimensionPixelSize(R.styleable.LabelSwitchView_labelTextSize, DisplayUtil.sp2px(context, DEFAULT_TEXT_SIZE));
         selectedBgResId = typedArray.getResourceId(R.styleable.LabelSwitchView_selectedBackground, INVALID_ID);
         dragOutDist = typedArray.getDimensionPixelSize(R.styleable.LabelSwitchView_dragOutDist, DisplayUtil.dip2px(context, DEFAULT_DRAG_OUT_DIST));
+        showSwipeRelative = typedArray.getBoolean(R.styleable.LabelSwitchView_showSwipeRelative, DEFAULT_SHOW_RELATIVE);
         CharSequence[] entries = typedArray.getTextArray(R.styleable.LabelSwitchView_labels);
         if (entries != null) {
             labels = new String[entries.length];
@@ -99,10 +98,6 @@ public class LabelSwitchView extends View {
 
         initArgs();
         textPaint.setTextSize(labelTextSize);
-
-        if (TEST) {
-//            labels = new String[]{"label1", "tt2", "loooooooooong", "label4"};
-        }
     }
 
     private void initArgs() {
@@ -119,7 +114,9 @@ public class LabelSwitchView extends View {
         }
         drawLabelText(canvas);
         drawSelectedBg(canvas);
-        drawRelativeText(canvas);
+        if (showSwipeRelative) {
+            drawRelativeText(canvas);
+        }
         drawSelectedText(canvas);
     }
 
@@ -187,7 +184,7 @@ public class LabelSwitchView extends View {
             //此时relative text应该不显示
             return;
         }
-        int alpha = (int) Math.abs((1 - offsetRate) * 255)/2;
+        int alpha = (int) Math.abs((1 - offsetRate) * 255) / 2;
         textPaint.setAlpha(alpha);
         canvas.drawText(relativeText, paddingLeft, paddingTop, textPaint);
         textPaint.setAlpha(255);
@@ -214,7 +211,7 @@ public class LabelSwitchView extends View {
             //此时relative text应该不显示
             return;
         }
-        int alpha = (int) Math.abs((1 - offsetRate) * 255)/2;
+        int alpha = (int) Math.abs((1 - offsetRate) * 255) / 2;
         textPaint.setAlpha(alpha);
         canvas.drawText(relativeText, paddingLeft, paddingTop, textPaint);
         textPaint.setAlpha(255);
@@ -329,6 +326,8 @@ public class LabelSwitchView extends View {
             case MotionEvent.ACTION_UP:
 //                removeAllCallbacks();
                 break;
+            default:
+                break;
         }
         return super.dispatchTouchEvent(event);
     }
@@ -362,6 +361,8 @@ public class LabelSwitchView extends View {
                 initPointLocation[0] = 0f;
                 initPointLocation[1] = 0f;
                 return gestureDetector.onTouchEvent(event);
+            default:
+                break;
         }
         return super.onTouchEvent(event);
     }
@@ -442,7 +443,7 @@ public class LabelSwitchView extends View {
         return (int) Math.min(labels.length - 1, Math.max(0, x / getElementWidth()));
     }
 
-    private void changeIndex(int newIndex, boolean notify){
+    private void changeIndex(int newIndex, boolean notify) {
         int oldSelectedIndex = selectedIndex;
         selectedIndex = newIndex;
         ensureAdjustThumb();
@@ -451,7 +452,7 @@ public class LabelSwitchView extends View {
         }
     }
 
-    public void setSelectedIndex(int index){
+    public void setSelectedIndex(int index) {
         changeIndex(index, true);
     }
 

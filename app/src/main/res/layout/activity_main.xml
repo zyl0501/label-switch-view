@@ -6,20 +6,15 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity">
+    android:paddingBottom="@dimen/activity_vertical_margin">
 
-    <com.ray.labelswitch.library.LabelSwitchView
+    <com.ray.widget.lab.LabelSwitchView
         android:id="@+id/label_view"
-        android:background="#46c3f1"
+        android:background="@drawable/bg_round_rect_blue"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="30dp"
         android:layout_width="300dp"
-        android:layout_height="90dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
+        android:layout_height="60dp"
         lsv:labels="@array/labels"
         lsv:normalColor="#16a2d5"
         lsv:selectedColor="#ffffff"

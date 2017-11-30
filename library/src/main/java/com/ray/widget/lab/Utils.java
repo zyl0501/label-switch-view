@@ -1,4 +1,4 @@
-package com.ray.labelswitch.library;
+package com.ray.widget.lab;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -8,7 +8,7 @@ import android.graphics.drawable.Drawable;
 /**
  * Created by Ray on 15/4/15.
  */
-public class Utils {
+class Utils {
 
     public static Bitmap drawableToBitmap(Drawable drawable) {
         return drawableToBitmap(drawable, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
