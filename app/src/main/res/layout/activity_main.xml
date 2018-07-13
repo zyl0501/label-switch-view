@@ -15,6 +15,7 @@
         android:layout_marginTop="30dp"
         android:layout_width="300dp"
         android:layout_height="60dp"
+        android:padding="5dp"
         lsv:labels="@array/labels"
         lsv:normalColor="#16a2d5"
         lsv:selectedColor="#ffffff"
